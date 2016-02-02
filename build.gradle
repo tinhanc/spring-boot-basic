@@ -1,0 +1,46 @@
+buildscript {
+    repositories {
+        maven { url "http://repo.spring.io/libs-snapshot" }
+        mavenLocal()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.1.RELEASE")
+        classpath 'org.akhikhl.gretty:gretty:+'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+apply plugin: 'org.akhikhl.gretty'
+
+war {
+    baseName = 'spring-basic'
+   // version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+    maven { url "http://repo.spring.io/libs-snapshot" }
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.thymeleaf:thymeleaf-spring4:2.1.2.RELEASE")
+    runtime('mysql:mysql-connector-java:5.1.6')
+
+    testCompile("junit:junit")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}
+
+gretty {
+    port = 8080
+    contextPath = 'MEMO-Wallet'
+    servletContainer = 'jetty9'
+}
