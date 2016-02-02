@@ -2,4 +2,4 @@
 ## How to run.
 - Install gradle
 - Clone repository
-- run by command 'jetty run'
+- run by command 'springboot run'
